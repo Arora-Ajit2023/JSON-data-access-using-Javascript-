@@ -267,9 +267,10 @@ const products = [
     },
   },
 ];
-const card = document.getElementById("container");
+const card = document.getElementById("center");
 // const centerContainer = document.createElement("div");
 // centerContainer.className = "center";
+
 for (let product of products) {
   // create div for Each card
   const productContainer = document.createElement("div");
@@ -284,35 +285,41 @@ for (let product of products) {
   image.setAttribute("src", `${product.image}`);
   cardImage.appendChild(image);
 
+  //product-detail card
+  const details = document.createElement("div");
+  details.className = "product-details";
+
   //create p elemets
-  const titleEl = document.createElement("h3");
+  const titleEl = document.createElement("h4");
   const priceEl = document.createElement("p");
   const categoryEl = document.createElement("p");
   const descriptionEl = document.createElement("p");
+  descriptionEl.className = "description";
 
   //give content of p element
   titleEl.textContent = product.title;
-  priceEl.textContent = product.price;
+  priceEl.textContent = `₹ ${product.price} /-`;
   categoryEl.textContent = product.category;
   descriptionEl.textContent = product.description;
 
   //for rating
   const ratingEl = document.createElement("div");
   ratingEl.className = "rating";
-  const ratingRateEl = document.createElement("p");
+  const ratingRateEl = document.createElement("button");
   ratingRateEl.textContent = product.rating.rate;
-  const ratingCountEl = document.createElement("p");
-  ratingCountEl.textContent = product.rating.count;
+  const ratingCountEl = document.createElement("button");
+  ratingCountEl.textContent = ` ${product.rating.count}`;
 
   //append to parent container
   ratingEl.appendChild(ratingRateEl);
   ratingEl.appendChild(ratingCountEl);
-  productContainer.appendChild(cardImage);
-  productContainer.appendChild(titleEl);
-  productContainer.appendChild(priceEl);
-  productContainer.appendChild(categoryEl);
-  productContainer.appendChild(descriptionEl);
 
-  productContainer.appendChild(ratingEl);
+  productContainer.appendChild(cardImage);
+  details.appendChild(titleEl);
+  details.appendChild(priceEl);
+  details.appendChild(categoryEl);
+  details.appendChild(descriptionEl);
+  details.appendChild(ratingEl);
+  productContainer.appendChild(details);
   card.appendChild(productContainer);
 }
